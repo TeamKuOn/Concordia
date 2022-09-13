@@ -4,8 +4,15 @@
 
 #include "stdArduino.hpp"
 #include <Arduino_FreeRTOS.h>
+#include <Wire.h>
+#include <JY901.h>
 
-#define LED 13
+
+static const uint32_t GPSBand = 9600;
+
+#define SerialIMU Serial1 // Tx1(18), Rx1(19)
+#define SerialGPS Serial2 // Tx2(16), Rx2(17)
+
 
 void xTaskCreate( void *pvParameters );
 
@@ -25,10 +32,6 @@ void setup() {
 
 }
 
-void loop() {
-  // Empty. Things are done in Tasks.
-}
-
 void sendCANBus(void *pvParameters) { // This is a task.  
   (void) pvParameters;
 
@@ -38,3 +41,7 @@ void sendCANBus(void *pvParameters) { // This is a task.
   }
 }
 
+
+void loop() {
+  // Empty. Things are done in Tasks.
+}
